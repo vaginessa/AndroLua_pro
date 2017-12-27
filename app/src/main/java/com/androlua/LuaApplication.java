@@ -97,25 +97,27 @@ public class LuaApplication extends Application implements LuaContext
 		crashHandler.init(getApplicationContext());
 		
 		//初始化AndroLua工作目录
-		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
-		{
-			String sdDir = Environment.getExternalStorageDirectory().getAbsolutePath();
-			luaExtDir = sdDir + "/AndroLua";
-		}
-		else
-		{
-			File[] fs= new File("/storage").listFiles();
-			for (File f:fs)
-			{
-				String[] ls=f.list();
-				if (ls == null)
-					continue;
-				if (ls.length > 5)
-					luaExtDir = f.getAbsolutePath() + "/AndroLua";
-			}
-			if (luaExtDir == null)
-				luaExtDir = getDir("AndroLua", Context.MODE_PRIVATE).getAbsolutePath();
-		}
+//		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
+//		{
+//			String sdDir = Environment.getExternalStorageDirectory().getAbsolutePath();
+//			luaExtDir = sdDir + "/AndroLua";
+//		}
+//		else
+//		{
+//			File[] fs= new File("/storage").listFiles();
+//			for (File f:fs)
+//			{
+//				String[] ls=f.list();
+//				if (ls == null)
+//					continue;
+//				if (ls.length > 5)
+//					luaExtDir = f.getAbsolutePath() + "/AndroLua";
+//			}
+//			if (luaExtDir == null)
+//				luaExtDir = getDir("AndroLua", Context.MODE_PRIVATE).getAbsolutePath();
+//		}
+
+		luaExtDir = getFilesDir().getAbsolutePath() + "/lua";
 
 		File destDir = new File(luaExtDir);
 		if (!destDir.exists())
